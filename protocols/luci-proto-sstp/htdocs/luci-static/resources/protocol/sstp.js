@@ -55,17 +55,18 @@ return network.registerProtocol('sstp', {
 		o = s.taboption('advanced', form.Flag, 'ppp_ipv6', _('IPv6 support'), _('If checked, adds "+ipv6" to the pppd options'));
 		o.ucioption = 'ipv6';
 
+		// --Modified by Pradheesh R J <pradheesh.rj@aheesa.com>
 		o = s.taboption('advanced', form.ListValue, 'log_level', _('sstpc Log-level'));
-		o.value('0', _('0', 'sstp log level value'));
-		o.value('1', _('1', 'sstp log level value'));
-		o.value('2', _('2', 'sstp log level value'));
-		o.value('3', _('3', 'sstp log level value'));
-		o.value('4', _('4', 'sstp log level value'));
+		o.value('0', _('0 - Error'));
+		o.value('1', _('1 - Warning'));
+		o.value('2', _('2 - Info'));
+		o.value('3', _('3 - Debug'));
+		o.value('4', _('4 - Verbose Debug'));
 		o.default = '0';
 
 		o = s.taboption('advanced', form.Value, 'mtu', _('Override MTU'));
 		o.placeholder = dev ? (dev.getMTU() || '1500') : '1500';
-		o.datatype    = 'max(9200)';
+		o.datatype    = 'range(576, 9200)';
 
 		o = s.taboption('advanced', form.Value, 'sstp_options', _('Extra sstpc options'), _('e.g: --proxy 10.10.10.10'));
 
